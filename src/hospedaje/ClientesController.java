@@ -25,6 +25,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -92,11 +93,13 @@ public class ClientesController implements Initializable {
     
     @FXML
     void agregarUsuario(ActionEvent evt) throws IOException{
-        FXMLLoader fxml = new FXMLLoader(getClass().getResource("RegistrarCliente.fxml"));
-        AnchorPane app = fxml.load();
-        Stage stage = new Stage(StageStyle.UNDECORATED);
+        FXMLLoader loader = new FXMLLoader();
+        AnchorPane app = loader.load(getClass().getResourceAsStream(("/hospedaje/RegistrarCliente.fxml")));
+        Stage stage = new Stage();
         stage.setTitle("Registrar Cliente");
         stage.setScene(new Scene(app));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(ap.getScene().getWindow());
         stage.showAndWait();
     }
 }
