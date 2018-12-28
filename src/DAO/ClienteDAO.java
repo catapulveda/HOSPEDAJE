@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import model.Cliente;
 import clases.Conexion;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 
 public class ClienteDAO {
 
@@ -29,16 +31,25 @@ public class ClienteDAO {
     }
     
     public ArrayList<Cliente> clientes(Conexion con) throws SQLException{
-        ResultSet rs = con.CONSULTAR("SELECT * FROM cliente");
+        ResultSet rs = con.CONSULTAR("SELECT idcliente,\n" +
+"       documento,\n" +
+"       nombre,\n" +
+"       apellido,\n" +
+"       fechanacimiento,\n" +
+"       telefono,\n" +
+"       fecharegistro\n" +
+"  FROM cliente;");
         ArrayList<Cliente> clientes = new ArrayList<>();
         while(rs.next()){
+            
             Cliente c = new Cliente();
-            c.setIdcliente(rs.getInt("idcliente"));
-            c.setDocumento(rs.getString("documento"));
-            c.setNombre(rs.getString("nombre"));
-            c.setApellido(rs.getString("apellido"));
-            c.setFechanacimiento(rs.getDate("fechanacimiento").toLocalDate());
-            c.setFechaderegistro(rs.getTimestamp("fecharegistro").toLocalDateTime());
+            c.setIdcliente(rs.getInt(1));
+            c.setDocumento(rs.getString(2));
+            c.setNombre(rs.getString(3));
+            c.setApellido(rs.getString(4));
+            c.setFechanacimiento(LocalDate.parse(rs.getString(5)));
+            c.setTelefono(rs.getString(6));
+            c.setFechaderegistro(Timestamp.valueOf(rs.getString(7)).toLocalDateTime());
             
             clientes.add(c);
         }

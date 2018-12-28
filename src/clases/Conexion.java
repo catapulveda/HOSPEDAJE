@@ -16,9 +16,9 @@ public class Conexion {
 
     public Conexion(){
         try{
-            Class.forName("org.postgresql.Driver");
-            con = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/hospedaje", "postgres", "admin");
-            st = con.createStatement (ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            Class.forName("org.sqlite.JDBC");
+            con = DriverManager.getConnection("jdbc:sqlite:hospedaje.db");
+            st = con.createStatement();
         }catch(ClassNotFoundException | SQLException ex){
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex); 
             JOptionPane.showMessageDialog(null, "ERROR EN LA CONEXION A LA BASE DE DATOS+\n"+ex);

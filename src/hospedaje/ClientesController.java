@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hospedaje;
 
 import DAO.ClienteDAO;
-import com.sun.javafx.scene.control.skin.TableViewSkin;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -27,7 +19,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import model.Cliente;
 import clases.Conexion;
-import clases.Metodos;
 import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
