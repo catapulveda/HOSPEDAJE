@@ -20,6 +20,7 @@ import javafx.scene.layout.VBox;
 import model.Cliente;
 import clases.Conexion;
 import java.io.IOException;
+import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +29,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -83,23 +85,33 @@ public class ClientesController implements Initializable {
         }finally{
             con.CERRAR();  
             tablaClientes.getColumns().forEach((column) -> {
-                clases.Metodos.changeSizeOnColumn(column, tablaClientes);
+                clases. Metodos.changeSizeOnColumn(column, tablaClientes);
             });            
         }               
         
         
-    }    
-    
+    }
     
     @FXML
-    void agregarUsuario(ActionEvent evt) throws IOException{
+    void agregarUsuario(ActionEvent evt) throws IOException{        
         FXMLLoader loader = new FXMLLoader();
-        AnchorPane app = loader.load(getClass().getResourceAsStream(("/hospedaje/RegistrarCliente.fxml")));
-        Stage stage = new Stage();
+        AnchorPane app = loader.load(getClass().getResourceAsStream(("/hospedaje/FXML.fxml")));
+        Stage stage = new Stage(StageStyle.TRANSPARENT);
         stage.setTitle("Registrar Cliente");
         stage.setScene(new Scene(app));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(ap.getScene().getWindow());
-        stage.showAndWait();
+        clases.Metodos.gaussianBlur(ap);
+        
+        app.setOpacity(0);
+        javafx.animation.FadeTransition ft = new FadeTransition(Duration.millis(700));
+        ft.setNode(app);
+        ft.setFromValue(0);
+        ft.setToValue(1);
+        ft.play();
+        
+        stage.showAndWait();                
+        
+        ap.setEffect(null);
     }
 }

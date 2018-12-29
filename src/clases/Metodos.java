@@ -6,8 +6,10 @@
 package clases;
 
 import java.awt.HeadlessException;
+import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.text.Text;
 import javax.swing.JOptionPane;
 
@@ -34,5 +36,10 @@ public class Metodos {
         } catch (HeadlessException ex) {
             System.err.println(ex);
         }
+    }
+    
+    public static void gaussianBlur(Node node){
+        javafx.scene.effect.GaussianBlur gb = new GaussianBlur(7.0);        
+        node.setEffect(gb);
     }
 }

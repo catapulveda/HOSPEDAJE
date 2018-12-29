@@ -1,6 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package hospedaje;
 
 import DAO.ClienteDAO;
+import clases.Conexion;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
@@ -11,24 +17,18 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.layout.AnchorPane;
-import model.Cliente;
-import clases.Conexion;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
-import javafx.scene.Node;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.util.Duration;
+import model.Cliente;
 
 /**
  * FXML Controller class
  *
- * @author NELSON
+ * @author PROGRAMADOR
  */
-public class RegistrarClienteController implements Initializable {
+public class FXMLController implements Initializable {
 
     @FXML
     private AnchorPane ap;
@@ -79,15 +79,6 @@ public class RegistrarClienteController implements Initializable {
     void cerrar(ActionEvent evt){
         Node  source = (Node)  evt.getSource(); 
         Stage stage  = (Stage) source.getScene().getWindow();
-        stage.initStyle(StageStyle.TRANSPARENT);
-//        stage.close();
-        
-        Timeline timeline = new Timeline();
-            KeyFrame key = new KeyFrame(Duration.millis(4000),
-                           new KeyValue (stage.getScene().getRoot().opacityProperty(), 0)); 
-            timeline.getKeyFrames().add(key);   
-            timeline.setOnFinished((ae) -> System.exit(1)); 
-            timeline.play();
+        stage.close();
     }
-    
 }

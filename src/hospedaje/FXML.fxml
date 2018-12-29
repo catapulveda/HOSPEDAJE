@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane id="AnchorPane" prefHeight="334.0" prefWidth="478.0" style="-fx-border-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="hospedaje.FXMLController">
+    <children>
+      <VBox alignment="CENTER_RIGHT" prefHeight="400.0" prefWidth="855.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <children>
+            <JFXButton fx:id="btnCerrar" buttonType="RAISED" ripplerFill="#b52013" style="-fx-background-color: #d14836;" textFill="WHITE">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fa-close" iconSize="24" />
+               </graphic>
+            </JFXButton>
+    <GridPane maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+              <columnConstraints>
+                <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="879.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="-Infinity" vgrow="ALWAYS" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Fecha Nacimiento:" GridPane.halignment="LEFT" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Lucida Sans Demibold Roman" size="15.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="cjDocumento" promptText="Documento de Identidad:" GridPane.rowIndex="2" />
+                  <JFXTextField fx:id="cjNombre" labelFloat="true" promptText="Nombre:" GridPane.rowIndex="3" />
+                  <JFXTextField fx:id="cjApellido" labelFloat="true" promptText="Apellido:" GridPane.rowIndex="4" />
+                  <JFXDatePicker fx:id="cjFechaNacimiento" GridPane.rowIndex="6" />
+                  <JFXTextField fx:id="cjTelefono" labelFloat="true" layoutX="310.0" layoutY="195.0" promptText="# Telefono:" GridPane.rowIndex="7" />
+                  <JFXButton fx:id="btnGuardar" buttonType="RAISED" onAction="#guardar" ripplerFill="#b52013" style="-fx-background-color: #d14836;" text="Guardar" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </GridPane>
+    </children>
+    </VBox>
+   </children>
+</AnchorPane>
