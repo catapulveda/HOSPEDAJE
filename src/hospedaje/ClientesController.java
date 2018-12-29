@@ -21,6 +21,7 @@ import model.Cliente;
 import clases.Conexion;
 import java.io.IOException;
 import javafx.animation.FadeTransition;
+import javafx.animation.ScaleTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -96,22 +97,23 @@ public class ClientesController implements Initializable {
     void agregarUsuario(ActionEvent evt) throws IOException{        
         FXMLLoader loader = new FXMLLoader();
         AnchorPane app = loader.load(getClass().getResourceAsStream(("/hospedaje/FXML.fxml")));
-        Stage stage = new Stage(StageStyle.TRANSPARENT);
+        Stage stage = new Stage(StageStyle.TRANSPARENT);        
         stage.setTitle("Registrar Cliente");
         stage.setScene(new Scene(app));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(ap.getScene().getWindow());
         clases.Metodos.gaussianBlur(ap);
-        
-        app.setOpacity(0);
-        javafx.animation.FadeTransition ft = new FadeTransition(Duration.millis(700));
-        ft.setNode(app);
-        ft.setFromValue(0);
-        ft.setToValue(1);
-        ft.play();
-        
-        stage.showAndWait();                
-        
+        stage.setOpacity(0);
+        stage.show();
+        stage.setOpacity(1);
+        ScaleTransition st = new ScaleTransition(Duration.millis(300), app);
+        st.setToX(0);
+        st.setToY(0);
+        st.setToZ(0);
+        st.setToX(1);
+        st.setToY(1);
+        st.setToZ(1);
+        st.play();        
         ap.setEffect(null);
     }
 }

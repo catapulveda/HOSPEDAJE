@@ -13,11 +13,11 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane id="AnchorPane" prefHeight="334.0" prefWidth="478.0" style="-fx-border-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="hospedaje.FXMLController">
+<AnchorPane id="AnchorPane" fx:id="ap" prefHeight="334.0" prefWidth="478.0" style="-fx-border-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="hospedaje.FXMLController">
     <children>
       <VBox alignment="CENTER_RIGHT" prefHeight="400.0" prefWidth="855.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
     <children>
-            <JFXButton fx:id="btnCerrar" buttonType="RAISED" ripplerFill="#b52013" style="-fx-background-color: #d14836;" textFill="WHITE">
+            <JFXButton fx:id="btnCerrar" buttonType="RAISED" onAction="#cerrar" ripplerFill="#b52013" style="-fx-background-color: #d14836;" textFill="WHITE">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fa-close" iconSize="24" />
                </graphic>

@@ -14,6 +14,10 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,6 +25,8 @@ import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import model.Cliente;
 
 /**
@@ -78,7 +84,13 @@ public class FXMLController implements Initializable {
     @FXML
     void cerrar(ActionEvent evt){
         Node  source = (Node)  evt.getSource(); 
-        Stage stage  = (Stage) source.getScene().getWindow();
-        stage.close();
+        Stage stage  = (Stage) source.getScene().getWindow();              
+//        stage.set
+        ScaleTransition st = new ScaleTransition(Duration.millis(300), ap);
+        st.setToX(0);
+        st.setToY(0);
+        st.setToZ(0);        
+        st.play();
+        st.setOnFinished(e->{stage.close();});        
     }
 }

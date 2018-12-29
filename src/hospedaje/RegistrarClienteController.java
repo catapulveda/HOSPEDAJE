@@ -17,6 +17,7 @@ import model.Cliente;
 import clases.Conexion;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.scene.Node;
 import javafx.stage.Stage;
@@ -88,6 +89,12 @@ public class RegistrarClienteController implements Initializable {
             timeline.getKeyFrames().add(key);   
             timeline.setOnFinished((ae) -> System.exit(1)); 
             timeline.play();
+
+        ScaleTransition st = new ScaleTransition(Duration.millis(1000), source);
+        st.setToX(2);
+        st.setToY(2);
+        st.setToZ(2);
+        
     }
     
 }
