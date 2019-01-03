@@ -3,41 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hospedaje;
+package animatefx;
 
+import animatefx.animation.BounceIn;
 import animatefx.animation.BounceInDown;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-/**
- *
- * @author NELSON
- */
 public class Main extends Application {
-    
+
     @Override
-    public void start(Stage stage) throws Exception {                
-        
-        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.setMaximized(true);
-        stage.show();
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("/animatefx/sample.fxml"));
+        primaryStage.setTitle("AnimateFX Demo");
+        primaryStage.setScene(new Scene(root, 700, 700));
+        primaryStage.show();
+        new BounceInDown(root).play();
     }
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String[] args) {
         launch(args);
     }
-    
 }

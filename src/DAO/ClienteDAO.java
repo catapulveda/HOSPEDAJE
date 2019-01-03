@@ -16,19 +16,28 @@ public class ClienteDAO {
     public ClienteDAO() {
     }
         
-    public int guardar(Cliente c, Conexion con) throws SQLException{
-        
-        String sql = "INSERT INTO cliente (documento,nombre,apellido,fechanacimiento,telefono) VALUES(";
-        sql += " '"+c.getDocumento()+"' , '"+c.getNombre()+"' , '"+c.getApellido()+"' , '"+c.getFechanacimiento()+"' , '"+c.getTelefono()+"' ";
-        sql += " )";
+    public int save(Cliente c, Conexion con) throws SQLException{
+        String sql = null;
+        if(c.getIdcliente()==0){
+            sql = "INSERT INTO cliente (documento,nombre,apellido,fechanacimiento,telefono) VALUES(";
+            sql += " '"+c.getDocumento()+"' , '"+c.getNombre()+"' , '"+c.getApellido()+"' , '"+c.getFechanacimiento()+"' , '"+c.getTelefono()+"' ";
+            sql += " )";
+        }else if(c.getIdcliente()>0){
+            sql = "UPDATE cliente SET documento='"+c.getDocumento()+"' , nombre='"+c.getNombre()+"' , ";
+            sql += " apellido='"+c.getApellido()+"' , fechanacimiento='"+c.getFechanacimiento()+"' , ";
+            sql += " telefono='"+c.getTelefono()+"' WHERE idcliente='"+c.getIdcliente()+"' ";
+        }
+        System.out.println(sql);
         PreparedStatement pst = con.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         pst.executeUpdate();
         ResultSet rs = pst.getGeneratedKeys();
-        if(rs.next()){           
-            return rs.getInt(1);
-        }        
-        return 0;        
+        rs.next();
+        return rs.getInt(1);
     }
+    
+    public int delete(Cliente c, Conexion con) throws SQLException{
+        return con.GUARDAR("DELETE FROM cliente WHERE idcliente="+c.getIdcliente());
+    }        
     
     public ArrayList<Cliente> clientes(Conexion con) throws SQLException{
         ResultSet rs = con.CONSULTAR("SELECT idcliente,\n" +

@@ -1,38 +1,32 @@
 package hospedaje;
 
 import DAO.ClienteDAO;
+import animatefx.animation.Wobble;
+import clases.Conexion;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
-import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.TitledPane;
 import model.Cliente;
-import clases.Conexion;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.ScaleTransition;
-import javafx.animation.Timeline;
-import javafx.scene.Node;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.util.Duration;
 
 /**
  * FXML Controller class
  *
- * @author NELSON
+ * @author PROGRAMADOR
  */
 public class RegistrarClienteController implements Initializable {
 
     @FXML
-    private AnchorPane ap;
+    private TitledPane root;
     @FXML
     private JFXTextField cjDocumento;
     @FXML
@@ -45,56 +39,79 @@ public class RegistrarClienteController implements Initializable {
     private JFXTextField cjTelefono;
     @FXML
     private JFXButton btnGuardar;
-
-    
-    ClienteDAO cDAO = new ClienteDAO();
-    Conexion con;
     @FXML
     private JFXButton btnCerrar;
     
+    ClienteDAO cDAO = new ClienteDAO();
+    Conexion con;
+    private Cliente cliente = new Cliente();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        
     }    
     
     @FXML
     void guardar(ActionEvent evt){
         
-        Cliente c = new Cliente();
+        if(cjDocumento.getText().isEmpty()){
+            new Wobble(cjDocumento).play();
+            return;
+        }
+        if(cjNombre.getText().isEmpty()){
+            new Wobble(cjNombre).play();
+            return;
+        }
+        if(cjApellido.getText().isEmpty()){
+            new Wobble(cjApellido).play();
+            return;
+        }
+        if(cjFechaNacimiento.getValue()==null){
+            cjFechaNacimiento.setValue(LocalDate.parse("1990-01-01"));            
+        }        
+        
+        Cliente c = null;
+        if(getCliente().getIdcliente()==0){
+            c = new Cliente();
+        }else{
+            c = getCliente();
+        }
+        
         c.setDocumento(cjDocumento.getText().trim());
         c.setNombre(cjNombre.getText().trim());
         c.setApellido(cjApellido.getText().trim());
         c.setFechanacimiento(cjFechaNacimiento.getValue());
-        c.setTelefono(cjTelefono.getText().trim());
+        c.setTelefono(cjTelefono.getText().trim());        
         
         con = new Conexion();
         try {
-            int n = cDAO.guardar(c, con);
-            System.out.println(n);
-        } catch (SQLException ex) {
+            int n = cDAO.save(c, con);
+            setCliente(c);
+            clases.Metodos.closeEffect( root );
+        } catch (Exception ex) {
+            clases.Metodos.alert("ERROR AL REGISTRAR EL CLIENTE", null, null, Alert.AlertType.ERROR, ex, null);
             Logger.getLogger(RegistrarClienteController.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            con.CERRAR();
         }
     }
     
     @FXML
     void cerrar(ActionEvent evt){
-        Node  source = (Node)  evt.getSource(); 
-        Stage stage  = (Stage) source.getScene().getWindow();
-        stage.initStyle(StageStyle.TRANSPARENT);
-//        stage.close();
-        
-        Timeline timeline = new Timeline();
-            KeyFrame key = new KeyFrame(Duration.millis(4000),
-                           new KeyValue (stage.getScene().getRoot().opacityProperty(), 0)); 
-            timeline.getKeyFrames().add(key);   
-            timeline.setOnFinished((ae) -> System.exit(1)); 
-            timeline.play();
-
-        ScaleTransition st = new ScaleTransition(Duration.millis(1000), source);
-        st.setToX(2);
-        st.setToY(2);
-        st.setToZ(2);
-        
+        clases.Metodos.closeEffect( root );    
     }
-    
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cli) {
+        this.cliente = cli;
+        cjDocumento.textProperty().bindBidirectional(cliente.documentoProperty());
+        cjNombre.textProperty().bindBidirectional(cliente.nombreProperty());
+        cjApellido.textProperty().bindBidirectional(cliente.apellidoProperty());
+        cjFechaNacimiento.valueProperty().bindBidirectional(cliente.fechanacimientoProperty());
+        cjTelefono.textProperty().bindBidirectional(cliente.telefonoProperty());
+    }
 }

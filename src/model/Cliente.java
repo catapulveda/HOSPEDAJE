@@ -11,7 +11,7 @@ import javafx.beans.property.StringProperty;
 
 public class Cliente {
 
-    private final IntegerProperty idcliente = new SimpleIntegerProperty();
+    private final IntegerProperty idcliente = new SimpleIntegerProperty(0);
     private final StringProperty documento = new SimpleStringProperty();
     private final StringProperty nombre = new SimpleStringProperty();
     private final StringProperty apellido = new SimpleStringProperty();

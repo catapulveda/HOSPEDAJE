@@ -4,99 +4,70 @@
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane id="AnchorPane" fx:id="ap" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hospedaje.RegistrarClienteController">
-   <children>
-      <VBox prefHeight="537.0" prefWidth="806.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <HBox alignment="CENTER" style="-fx-background-color: #4d90fe; -fx-border-color: #3079ed;">
-               <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRAR CLIENTE" textAlignment="CENTER" wrappingWidth="805.03466796875" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font name="Lucida Sans Demibold" size="39.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="MOVE" />
-                     </cursor>
-                  </Text>
-                  <JFXButton fx:id="btnCerrar">
-                     <graphic>
-                        <FontIcon iconColor="WHITE" iconLiteral="fa-close" iconSize="32" />
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </JFXButton>
-               </children>
-            </HBox>
-            <GridPane hgap="10.0" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+<TitledPane fx:id="root" collapsible="false" prefHeight="426.0" prefWidth="549.0" text="Registrar Cliente" textFill="#575252" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hospedaje.RegistrarClienteController">
+   <content>
+      <VBox alignment="CENTER_RIGHT" prefHeight="400.0" prefWidth="855.0">
+    <children>
+            <JFXButton fx:id="btnCerrar" buttonType="RAISED" onAction="#cerrar" ripplerFill="#b52013" style="-fx-background-color: #d14836; -fx-background-radius: 0px;" textFill="WHITE">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fa-close" iconSize="18" />
+               </graphic>
+            </JFXButton>
+    <GridPane maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
               <columnConstraints>
-                <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="145.0" minWidth="145.0" prefWidth="145.0" />
                 <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="879.0" />
               </columnConstraints>
               <rowConstraints>
                   <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="-Infinity" vgrow="ALWAYS" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="N° Documento:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                  <Label text="Fecha Nacimiento:" GridPane.halignment="LEFT" GridPane.rowIndex="5">
                      <font>
                         <Font name="Lucida Sans Demibold Roman" size="15.0" />
                      </font>
                   </Label>
-                  <Label text="Nombre:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Lucida Sans Demibold Roman" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Apellido:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="Lucida Sans Demibold Roman" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Fecha Nacimiento:" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="Lucida Sans Demibold Roman" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="N° Telefono:" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="Lucida Sans Demibold Roman" size="15.0" />
-                     </font>
-                  </Label>
-                  <JFXTextField fx:id="cjDocumento" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <JFXTextField fx:id="cjNombre" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <JFXTextField fx:id="cjApellido" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <JFXDatePicker fx:id="cjFechaNacimiento" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <JFXTextField fx:id="cjTelefono" layoutX="310.0" layoutY="195.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <JFXButton fx:id="btnGuardar" buttonType="RAISED" onAction="#guardar" ripplerFill="#d14836" style="-fx-background-color: #bc2222;" text="Guardar" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
+                  <JFXTextField fx:id="cjDocumento" labelFloat="true" promptText="Documento de Identidad:" GridPane.rowIndex="2" />
+                  <JFXTextField fx:id="cjNombre" labelFloat="true" promptText="Nombre:" GridPane.rowIndex="3" />
+                  <JFXTextField fx:id="cjApellido" labelFloat="true" promptText="Apellido:" GridPane.rowIndex="4" />
+                  <JFXDatePicker fx:id="cjFechaNacimiento" GridPane.rowIndex="6" />
+                  <JFXTextField fx:id="cjTelefono" labelFloat="true" layoutX="310.0" layoutY="195.0" promptText="# Telefono:" GridPane.rowIndex="7" />
+                  <JFXButton fx:id="btnGuardar" buttonType="RAISED" onAction="#guardar" ripplerFill="#0a4683" style="-fx-background-color: #2266ae; -fx-background-radius: 0 px;" text="Guardar" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
+                     <graphic>
+                        <FontIcon iconColor="WHITE" iconLiteral="enty-save" iconSize="20" />
+                     </graphic>
                   </JFXButton>
                </children>
                <VBox.margin>
-                  <Insets left="10.0" right="10.0" />
+                  <Insets />
                </VBox.margin>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
             </GridPane>
-         </children>
-      </VBox>
-   </children>
-</AnchorPane>
+    </children>
+    </VBox>
+   </content>
+   <font>
+      <Font name="System Bold" size="18.0" />
+   </font>
+   <graphic>
+      <FontIcon iconColor="#b52013" iconLiteral="enty-add-user" iconSize="32" />
+   </graphic>
+</TitledPane>
