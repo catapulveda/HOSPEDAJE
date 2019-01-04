@@ -35,6 +35,7 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TitledPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -83,24 +84,12 @@ public class ClientesController implements Initializable {
         colFechaNacimiento.setCellValueFactory(cell->cell.getValue().fechanacimientoProperty());
         colFechaRegistro.setCellValueFactory(cell->cell.getValue().fechaderegistroProperty());
         
+        tablaClientes.setItems(listaClientes);
         tablaClientes.setEditable(true);
         tablaClientes.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE); 
-        tablaClientes.getSelectionModel().setCellSelectionEnabled(true);
+        tablaClientes.getSelectionModel().setCellSelectionEnabled(true);                
         
-//        con = new Conexion();
-//        try {
-//            listaClientes.addAll(cDAO.clientes(con));
-            tablaClientes.setItems(listaClientes);
-//        } catch (SQLException ex) {            
-//            Logger.getLogger(ClientesController.class.getName()).log(Level.SEVERE, null, ex);
-//        }finally{
-//            con.CERRAR();  
-//            tablaClientes.getColumns().forEach((column) -> {
-//                clases. Metodos.changeSizeOnColumn(column, tablaClientes);
-//            });            
-//        }
-        
-        
+        loadData(null);
     }
     
     @FXML
@@ -137,13 +126,15 @@ public class ClientesController implements Initializable {
     
     @FXML
     void view(ActionEvent evt) throws IOException{
-        Cliente c = tablaClientes.getSelectionModel().getSelectedItem();
-        c.setDocumento("nooombree");
+        Cliente c = tablaClientes.getSelectionModel().getSelectedItem();       
         abrirFormulario();
         rcc.setCliente(c);
         stage.showAndWait();
-        ap.setEffect(null);
-        listaClientes.set(tablaClientes.getSelectionModel().getSelectedIndex(), rcc.getCliente());
+        ap.setEffect(null);        
+        if(rcc.isN()){
+            listaClientes.set(tablaClientes.getSelectionModel().getSelectedIndex(), rcc.getCliente());
+            resizeColumn();
+        }        
     }
     
     @FXML
@@ -158,9 +149,7 @@ public class ClientesController implements Initializable {
         loadDataTask.setOnSucceeded(e -> {
             con.CERRAR();
             listaClientes.setAll(loadDataTask.getValue());
-            tablaClientes.getColumns().forEach((column) -> {
-                clases. Metodos.changeSizeOnColumn(column, tablaClientes);
-            });
+            resizeColumn();
         });
         loadDataTask.setOnFailed(e -> { /* handle errors... */ });
 
@@ -184,4 +173,10 @@ public class ClientesController implements Initializable {
         clases.Metodos.gaussianBlur(ap);                
     }
     
+    
+    void resizeColumn(){
+        tablaClientes.getColumns().forEach((column) -> {
+            clases. Metodos.changeSizeOnColumn(column, tablaClientes, -1);
+        });
+    }
 }

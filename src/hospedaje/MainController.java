@@ -46,7 +46,11 @@ public class MainController implements Initializable {
             
             
             javafx.scene.layout.AnchorPane rootHabitaciones = l.load(getClass().getResource("Habitaciones.fxml"));
+            FontIcon icon2 = new FontIcon("dashicons-admin-multisite");
+            icon2.setIconSize(32);
+            icon2.setIconColor(Paint.valueOf("#FFF"));
             Tab tabHabitaciones = new Tab("HABITACIONES", rootHabitaciones);
+            tabHabitaciones.setGraphic(icon2);
             
             tabPane.getTabs().addAll(tabClientes, tabHabitaciones);
         } catch (IOException ex) {

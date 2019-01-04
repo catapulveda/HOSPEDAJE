@@ -41,17 +41,25 @@ import javax.swing.JOptionPane;
  */
 public class Metodos {
     
-    public static void changeSizeOnColumn(TableColumn tc, TableView table) {
+    public static void changeSizeOnColumn(TableColumn tc, TableView table, int indexRow) {
         try {
             Text title = new Text(tc.getText());
-            double ancho = title.getLayoutBounds().getWidth() + 10;
+            double ancho = title.getLayoutBounds().getWidth() + 10;                        
             
-            for (int i = 0; i < table.getItems().size(); i++) {                
-                Object value = tc.getCellData(i);                 
-                title = new Text( (value==null)?"":value.toString() );                
+            for (Object item : table.getItems()) {
+                Object value = "";
+                if(indexRow>-1){
+                    value= tc.getCellData(indexRow);
+                }else{
+                    value= tc.getCellData(item);
+                }
+                title = new Text(""+value);
                 
                 if (title.getLayoutBounds().getWidth() > ancho) {
                     ancho = title.getLayoutBounds().getWidth()+10;
+                }
+                if(indexRow>-1){
+                    break;
                 }
             }
             tc.setPrefWidth(ancho + 8);

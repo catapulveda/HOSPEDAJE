@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -17,10 +18,13 @@
    <content>
       <VBox alignment="CENTER_RIGHT" prefHeight="400.0" prefWidth="855.0">
     <children>
-            <JFXButton fx:id="btnCerrar" buttonType="RAISED" onAction="#cerrar" ripplerFill="#b52013" style="-fx-background-color: #d14836; -fx-background-radius: 0px;" textFill="WHITE">
+            <JFXButton fx:id="btnCerrar" buttonType="RAISED" onAction="#cerrar" ripplerFill="#b52013" style="-fx-background-color: #d14836; -fx-background-radius: 0;" textFill="WHITE">
                <graphic>
-                  <FontIcon iconColor="WHITE" iconLiteral="fa-close" iconSize="18" />
+                  <FontIcon iconColor="WHITE" iconLiteral="fa-window-close" iconSize="20" />
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
     <GridPane maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
               <columnConstraints>
@@ -48,10 +52,13 @@
                   <JFXTextField fx:id="cjApellido" labelFloat="true" promptText="Apellido:" GridPane.rowIndex="4" />
                   <JFXDatePicker fx:id="cjFechaNacimiento" GridPane.rowIndex="6" />
                   <JFXTextField fx:id="cjTelefono" labelFloat="true" layoutX="310.0" layoutY="195.0" promptText="# Telefono:" GridPane.rowIndex="7" />
-                  <JFXButton fx:id="btnGuardar" buttonType="RAISED" onAction="#guardar" ripplerFill="#0a4683" style="-fx-background-color: #2266ae; -fx-background-radius: 0 px;" text="Guardar" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
+                  <JFXButton fx:id="btnGuardar" buttonType="RAISED" onAction="#guardar" ripplerFill="#0a4683" style="-fx-background-color: #2266ae; -fx-background-radius: 0;" text="Guardar" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
                      <graphic>
-                        <FontIcon iconColor="WHITE" iconLiteral="enty-save" iconSize="20" />
+                        <FontIcon iconColor="WHITE" iconLiteral="fa-save" iconSize="20" />
                      </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </JFXButton>
                </children>
                <VBox.margin>

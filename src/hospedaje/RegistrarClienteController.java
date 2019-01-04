@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TitledPane;
+import javax.swing.JOptionPane;
 import model.Cliente;
 
 /**
@@ -45,6 +46,7 @@ public class RegistrarClienteController implements Initializable {
     ClienteDAO cDAO = new ClienteDAO();
     Conexion con;
     private Cliente cliente = new Cliente();
+    private boolean n = false;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -75,6 +77,7 @@ public class RegistrarClienteController implements Initializable {
         if(getCliente().getIdcliente()==0){
             c = new Cliente();
         }else{
+            System.out.println("actualizando");
             c = getCliente();
         }
         
@@ -86,9 +89,8 @@ public class RegistrarClienteController implements Initializable {
         
         con = new Conexion();
         try {
-            int n = cDAO.save(c, con);
-            setCliente(c);
-            clases.Metodos.closeEffect( root );
+            n = (cDAO.save(c, con)>0);            
+            clases.Metodos.closeEffect(root);
         } catch (Exception ex) {
             clases.Metodos.alert("ERROR AL REGISTRAR EL CLIENTE", null, null, Alert.AlertType.ERROR, ex, null);
             Logger.getLogger(RegistrarClienteController.class.getName()).log(Level.SEVERE, null, ex);
@@ -113,5 +115,13 @@ public class RegistrarClienteController implements Initializable {
         cjApellido.textProperty().bindBidirectional(cliente.apellidoProperty());
         cjFechaNacimiento.valueProperty().bindBidirectional(cliente.fechanacimientoProperty());
         cjTelefono.textProperty().bindBidirectional(cliente.telefonoProperty());
+    }
+
+    public boolean isN() {
+        return n;
+    }
+
+    public void setN(boolean n) {
+        this.n = n;
     }
 }

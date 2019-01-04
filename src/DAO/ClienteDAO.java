@@ -30,9 +30,14 @@ public class ClienteDAO {
         System.out.println(sql);
         PreparedStatement pst = con.getCon().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         pst.executeUpdate();
-        ResultSet rs = pst.getGeneratedKeys();
-        rs.next();
-        return rs.getInt(1);
+        if(c.getIdcliente()==0){            
+            ResultSet rs = pst.getGeneratedKeys();
+            rs.next();
+            return rs.getInt(1);
+        }else{
+            return 1;
+        }
+                
     }
     
     public int delete(Cliente c, Conexion con) throws SQLException{

@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hospedaje;
 
-import animatefx.animation.BounceInDown;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -31,6 +22,7 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();
+               
     }
 
     /**

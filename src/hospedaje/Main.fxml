@@ -13,19 +13,15 @@
    <children>
       <MenuBar fx:id="menuBar">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Archivo">
             <items>
-              <MenuItem fx:id="menuCerrar" mnemonicParsing="false" text="Close" />
+              <MenuItem fx:id="menuCerrar" mnemonicParsing="false" text="Salir" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="Editar">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem fx:id="menuRegistrarTipoDeHabitacion" mnemonicParsing="false" text="About" />
+              <MenuItem fx:id="menuRegistrarHotel" mnemonicParsing="false" text="Delete" />
             </items>
           </Menu>
         </menus>
