@@ -55,7 +55,7 @@
                                     </JFXButton>
                                     <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="54.0" spacing="5.0" GridPane.columnIndex="2">
                                        <children>
-                                          <Button fx:id="btnCargarHoteles" mnemonicParsing="false" onAction="#loadHoteles">
+                                          <Button fx:id="btnRecargarHoteles" mnemonicParsing="false" onAction="#loadHoteles">
                                              <graphic>
                                                 <FontIcon iconLiteral="dashicons-update" iconSize="20">
                                                    <cursor>
@@ -64,7 +64,7 @@
                                                 </FontIcon>
                                              </graphic>
                                           </Button>
-                                          <Button fx:id="btnMostrarPopup" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#showPopup" prefHeight="26.0" prefWidth="26.0">
+                                          <Button fx:id="btnMostrarPopupHotel" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#showPopup" prefHeight="26.0" prefWidth="26.0">
                                              <graphic>
                                                 <FontIcon iconLiteral="dashicons-plus" iconSize="20">
                                                    <cursor>
@@ -79,7 +79,7 @@
                                     <JFXComboBox maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <children>
-                                          <Button mnemonicParsing="false">
+                                          <Button fx:id="btnRecargarTipoHabitacion" mnemonicParsing="false">
                                              <graphic>
                                                 <FontIcon iconLiteral="dashicons-update" iconSize="20">
                                                    <cursor>
@@ -88,7 +88,7 @@
                                                 </FontIcon>
                                              </graphic>
                                           </Button>
-                                          <Button mnemonicParsing="false">
+                                          <Button fx:id="btnMostrarPopupTipoHabitacion" mnemonicParsing="false" onAction="#showPopup">
                                              <graphic>
                                                 <FontIcon iconLiteral="dashicons-plus" iconSize="20">
                                                    <cursor>

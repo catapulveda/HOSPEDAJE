@@ -22,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressIndicator;
@@ -32,6 +33,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 import model.Cliente;
 import model.Habitacion;
 import model.Hotel;
@@ -41,6 +43,7 @@ public class HabitacionesController implements Initializable {
 
     ObservableList<Habitacion> listaHabitaciones = FXCollections.observableArrayList();
     ObservableList<Hotel> listaHoteles = FXCollections.observableArrayList();
+    
     @FXML
     private JFXComboBox<Hotel> comboHoteles;
     @FXML
@@ -54,19 +57,31 @@ public class HabitacionesController implements Initializable {
     @FXML
     private TableColumn<Habitacion, String> colNombre;
     
+    
     private Conexion con;
     private HotelDAO hDAO = new HotelDAO();
     private final HabitacionDAO habitacionDAO = new HabitacionDAO();
+    
+    private PopOver pop = new PopOver();    
     @FXML
-    private Button btnCargarHoteles;
+    private Button btnRecargarHoteles;
     @FXML
-    private Button btnMostrarPopup;
+    private Button btnMostrarPopupHotel;
+    @FXML
+    private Button btnRecargarTipoHabitacion;
+    @FXML
+    private Button btnMostrarPopupTipoHabitacion;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        btnCargarHoteles.setTooltip(new Tooltip("Cargar lista de hoteles"));
-        btnMostrarPopup.setTooltip(new Tooltip("Registrar nuevo hotel"));
+        btnRecargarHoteles.setTooltip(new Tooltip("Cargar lista de hoteles"));
+        btnMostrarPopupHotel.setTooltip(new Tooltip("Registrar nuevo hotel"));
+        
+        btnRecargarTipoHabitacion.setTooltip(new Tooltip("Cargar tipos de habitacion"));
+        btnMostrarPopupTipoHabitacion.setTooltip(new Tooltip("Registrar tipo de habitacion"));
+        
         btnGuardar.setTooltip(new Tooltip("Guardar habitación"));
         
         colHotel.setCellValueFactory(cell->cell.getValue().getHotel().nombreProperty());
@@ -86,7 +101,7 @@ public class HabitacionesController implements Initializable {
     }
     
     @FXML
-    void guardarHabitacion(ActionEvent evt){        
+    void guardarHabitacion(ActionEvent evt){
         
         Hotel hotel = comboHoteles.getSelectionModel().getSelectedItem();
         if(cjNombre.getText().isEmpty()){
@@ -148,19 +163,24 @@ public class HabitacionesController implements Initializable {
         }
         con.CERRAR();
     }
-    
-
+       
     @FXML
-    private void showPopup(ActionEvent event) {
-        try {
-            StackPane stack = FXMLLoader.load(getClass().getResource("RegistrarTipoDeHabitacion.fxml"));
-            PopOver pop = new PopOver(stack);
-            pop.setAnimated(true);
-            pop.setHeaderAlwaysVisible(true);
-            pop.setTitle("Titulo");
-            pop.show(btnMostrarPopup);
-        } catch (IOException ex) {
-            Logger.getLogger(HabitacionesController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    private void showPopup(ActionEvent event) throws IOException{
+        if(!pop.isShowing()){
+            StackPane stack = null;
+            pop.setContentNode(stack);
+            pop.setAnimated(true);pop.setHeaderAlwaysVisible(true);
+            
+            if(event.getSource()==btnMostrarPopupHotel){
+                stack = FXMLLoader.load(getClass().getResource("RegistrarHotel.fxml"));
+                pop.setTitle("Registrar Hotel");
+            }else if(event.getSource()==btnMostrarPopupTipoHabitacion){
+                pop.setTitle("Registrar Tipo de Habitación");
+                stack = FXMLLoader.load(getClass().getResource("RegistrarTipoHabitacion.fxml"));
+            }
+
+            pop.setContentNode(stack);
+            pop.show((Button) event.getSource());
+        }        
+    }    
 }
